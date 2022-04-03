@@ -57,14 +57,12 @@ accountRouter
   .patch((req, res) => {
     const { account } = req;
 
-    if (req.body._id) {
-      delete req.body._id;
-    }
-    Object.entries(req.account).forEach((item) => {
+    Object.entries(req.body).forEach((item) => {
       const key = item[0];
       const value = item[1];
       account[key] = value;
     });
+    
     req.account.save((err) => {
       if (err) {
         return res.send(err);
@@ -81,7 +79,14 @@ accountRouter
     account.save();
     return res.json(account);
   })
-  .get((req, res) => res.json(Account));
+  .get((req, res) => {
+    Account.findById(req.params.accountId, (err, account) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(account);
+    });
+  });
 
 app.use("/api", accountRouter);
 
