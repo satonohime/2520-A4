@@ -1,0 +1,2 @@
+::1 - - [04/Apr/2022:00:25:04 +0000] "GET /api/accounts HTTP/1.1" 200 785 "-" "PostmanRuntime/7.29.0"
+::ffff:127.0.0.1 - - [04/Apr/2022:00:25:26 +0000] "GET /api/accounts HTTP/1.1" 200 785 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0"

@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+const morgan = require("morgan");
+const fs = require("fs");
 const app = express();
 const db = mongoose.connect("mongodb://localhost/accountAPI");
 const accountRouter = express.Router();
@@ -10,6 +11,9 @@ const Account = require("./models/accountModel");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+var logStream = fs.createWriteStream(__dirname + '/access.log', { flags: 'a' });
+app.use(morgan('combined', {stream: logStream}))
 
 accountRouter
   .route("/accounts")
